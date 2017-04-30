@@ -1,0 +1,47 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "Wishlist"|t %}
+
+{% set wishlists = craft.wishlist.wishlists %}
+
+{% block content %}
+  {% if wishlists %}
+    <table class="data fullwidth">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ "Wishlist"|t }}</th>
+          <th>{{ "Owner"|t }}</th>
+          <th>{{ "Created"|t }}</th>
+          <th>{{ "Updated"|t }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for wishlist in wishlists %}
+          {% set owner = craft.users.id(wishlist.userId).first()%}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+              <a href="#">{{ wishlist.title }}</a>
+            </td>
+            <td>
+              {{ owner.fullname }}
+            </td>
+            <td>
+              {{ wishlist.dateCreated }}
+            </td>
+            <td>
+              {{ wishlist.dateUpdated }}
+            </td>
+            <td>
+              <a href="{{ actionUrl('wishlist/delete', { id: wishlist.id }) }}" class="delete icon"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    {{ "No wishlists found"|t }}
+  {% endif %}
+{% endblock %}
