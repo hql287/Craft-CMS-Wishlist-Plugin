@@ -40,7 +40,7 @@ class WishlistService extends BaseApplicationComponent
     }
   }
 
-  // Get all wishlists belongs to a user
+  // Get all wishlists of the current user
   public function getCurrentUserWishlists()
   {
     // get current user id
@@ -49,6 +49,15 @@ class WishlistService extends BaseApplicationComponent
 
     // get all wishlist from the DB
     $wishlists = WishlistRecord::model()->findAllByAttributes(array('userId' => $currentUserId));
+
+    return $wishlists;
+  }
+
+  // Get all wishlists of a user
+  public function getUserWishlists($userId)
+  {
+    // get all wishlist from the DB
+    $wishlists = WishlistRecord::model()->findAllByAttributes(array('userId' => $userId));
 
     return $wishlists;
   }

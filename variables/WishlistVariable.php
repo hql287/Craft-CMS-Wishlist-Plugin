@@ -15,10 +15,16 @@ class WishlistVariable
     return craft()->wishlist->getWishlist($wishlistId);
   }
 
-  // Retrieve all wishlists belongs to a user
+  // Retrieve all wishlists belongs to the current user
   public function getCurrentUserWishlists()
   {
     return craft()->wishlist->getCurrentUserWishlists();
+  }
+
+  // Retrieve all wishlists belongs to a user
+  public function getUserWishlists($userId)
+  {
+    return craft()->wishlist->getUserWishlists($userId);
   }
 
   // Create a new wishlist
