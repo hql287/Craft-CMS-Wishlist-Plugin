@@ -13,6 +13,9 @@ class WishlistController extends BaseController
     // Create a new wishlist with above title
     craft()->wishlist->add($title);
 
+    // Set Flash message
+    craft()->userSession->setFlash('wishlistAdded', 'Wishlist Added');
+
     // Redirect to plugin index page
     if($redirectUrl)
     {
@@ -70,6 +73,9 @@ class WishlistController extends BaseController
 
     // Notify user
     craft()->userSession->setNotice(Craft::t('Wishlist deleted!'));
+
+    // Set Flash message
+    craft()->userSession->setFlash('wishlistDeleted', 'Wishlist deleted!');
 
     // Redirect to plugin index page
     if($redirectUrl)
